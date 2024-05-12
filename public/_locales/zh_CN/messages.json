@@ -1,0 +1,17 @@
+{
+  "extName": {
+    "message": "YouTube 找回留言区用户名称"
+  },
+  "extDescription": {
+    "message": "带回 YouTube 留言区的使用者名称。"
+  },
+  "title": {
+    "message": "Thanks for using YouTube 找回留言区用户名称 :)"
+  },
+  "buyMeACoffee": {
+    "message": "请开发者喝杯咖啡"
+  },
+  "contactMe": {
+    "message": "联络开发者："
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>return-yt-comment-usernames</title>
+    <style>
+      body {
+        font-family: monospace, Microsoft JhengHei;
+        background: #212121;
+        color: white;
+        padding: 25px 15px;
+        font-size: 14px;
+        margin: 0;
+      }
+      main {
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+      }
+      img {
+        margin: auto;
+      }
+      .title {
+        margin: auto;
+        margin-top: 22px;
+        margin-bottom: 28px;
+        line-height: 1.2rem;
+      }
+      a {
+        background: #e9e9e9;
+        padding: 8px 12px;
+        font-size: small;
+        color: black;
+        text-decoration: none;
+        border-radius: 7px;
+        margin-right: 3px;
+        transition: all 0.4s ease-in-out;
+      }
+      a:hover {
+        background: #bfeeff;
+      }
+      .footer {
+        margin-top: 40px;
+        font-size: smaller;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+      }
+      .contactUs {
+        line-height: 1.1rem;
+      }
+      .version {
+        background: #3f3f3f;
+        padding: 4px 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="128.png" width="64" height="64" alt="icon" />
+      <span class="title"></span>
+      <div class="btns">
+        <a
+          id="buymeacoffee"
+          target="_blank"
+          href="https://www.buymeacoffee.com/yuanchuang"
+        ></a>
+        <a
+          target="_blank"
+          href="https://github.com/Frank0945/return-yt-comment-usernames"
+          >Github</a
+        >
+      </div>
+      <div class="footer">
+        <span class="contactUs">
+          <span id="contact"></span>
+          <br />
+          yuanchuang940@gmail.com
+        </span>
+        <span class="version">v1.0.0</span>
+      </div>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
