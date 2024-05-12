@@ -20,5 +20,8 @@
   },
   "editor.quickSuggestions": {
     "strings": true
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

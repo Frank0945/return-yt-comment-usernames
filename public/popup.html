@@ -7,7 +7,7 @@
       body {
         font-family: monospace, Microsoft JhengHei;
         background: #212121;
-        color: white;
+        color: #bcbcbc;
         padding: 25px 15px;
         font-size: 14px;
         margin: 0;
@@ -20,12 +20,19 @@
       img {
         margin: auto;
       }
-      .title {
+      #title {
         margin: auto;
         margin-top: 22px;
         margin-bottom: 28px;
         line-height: 1.2rem;
       }
+
+      .btns {
+        display: flex;
+        margin-top: 35px;
+        justify-content: end;
+      }
+
       a {
         background: #e9e9e9;
         padding: 8px 12px;
@@ -33,14 +40,14 @@
         color: black;
         text-decoration: none;
         border-radius: 7px;
-        margin-right: 3px;
+        margin-right: 7px;
         transition: all 0.4s ease-in-out;
       }
       a:hover {
         background: #bfeeff;
       }
       .footer {
-        margin-top: 40px;
+        margin-top: 25px;
         font-size: smaller;
         display: flex;
         align-items: end;
@@ -54,12 +61,109 @@
         padding: 4px 10px;
         border-radius: 10px;
       }
+
+      .checkbox {
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .checkbox .check {
+        display: flex;
+        align-items: center;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 25px;
+        margin-right: 10px;
+      }
+
+      .switch-text {
+        display: flex;
+        flex-direction: column;
+      }
+      #remind {
+        color: #bcbcbc;
+        font-size: 12px;
+        display: none;
+        margin-top: 2px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 2.5px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #674ea7ff;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #674ea7ff;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
     </style>
   </head>
   <body>
     <main>
       <img src="128.png" width="64" height="64" alt="icon" />
-      <span class="title"></span>
+      <span id="title"></span>
+
+      <div class="checkbox">
+        <div class="check">
+          <label class="switch">
+            <input id="hideHandle" type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <div class="switch-text">
+            <span id="onlyShowUsername"></span>
+            <span id="remind"></span>
+          </div>
+        </div>
+      </div>
+
       <div class="btns">
         <a
           id="buymeacoffee"
@@ -78,7 +182,7 @@
           <br />
           yuanchuang940@gmail.com
         </span>
-        <span class="version">v1.0.0</span>
+        <span class="version">v1.0.1</span>
       </div>
     </main>
     <script src="popup.js"></script>

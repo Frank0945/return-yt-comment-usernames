@@ -5,6 +5,9 @@ const COMMENT_URL = [
 ];
 const FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
 
+const hideHandle =
+  window.localStorage.getItem("hideHandle") === "true" ? true : false;
+
 const interceptFetch = () => {
   const { fetch: origFetch } = window;
 
@@ -52,7 +55,9 @@ const updateAuthors = async (mutations: any[]): Promise<any> => {
         const dName = m.payload.commentEntityPayload.author.displayName;
         const pTime = m.payload.commentEntityPayload.properties.publishedTime;
 
-        m.payload.commentEntityPayload.properties.publishedTime = `\u00A0${dName}．${pTime}`;
+        if (!hideHandle) {
+          m.payload.commentEntityPayload.properties.publishedTime = `${dName}．${pTime}`;
+        }
         m.payload.commentEntityPayload.author.displayName = cName;
       }
       return m;

@@ -8,10 +8,16 @@
   "title": {
     "message": "Thanks for using YouTube 找回留言區用戶名稱 :)"
   },
+  "onlyShowUsername": {
+    "message": "只顯示用戶名稱（移除「@...」）"
+  },
+  "remind": {
+    "message": "重整網站後套用此設定"
+  },
   "buyMeACoffee": {
     "message": "請開發者喝杯咖啡"
   },
-  "contactMe": {
+  "contact": {
     "message": "聯絡開發者："
   }
 }

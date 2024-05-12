@@ -8,10 +8,16 @@
   "title": {
     "message": "Thanks for using Bring back YouTube Comment Usernames :)"
   },
+  "onlyShowUsername": {
+    "message": "Display username only (Remove \"@...\")"
+  },
+  "remind": {
+    "message": "Apply after refresh"
+  },
   "buyMeACoffee": {
     "message": "Buy developer a coffee"
   },
-  "contactMe": {
+  "contact": {
     "message": "Contact developer: "
   }
 }
