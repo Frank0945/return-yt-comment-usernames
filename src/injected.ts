@@ -6,63 +6,61 @@ const COMMENT_URL = [
 const FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
 
 const interceptFetch = () => {
-  const originalFetch = window.fetch;
+  const { fetch: origFetch } = window;
 
-  window.fetch = async function (input, init) {
-    const response = await originalFetch(input, init);
+  window.fetch = async (...args) => {
+    const response = await origFetch(...args);
 
-    if (
-      !(input instanceof Request) ||
-      !COMMENT_URL.some((url) => input.url.includes(url))
-    ) {
+    if (!response.ok) {
       return response;
     }
 
-    // const startTime = performance.now();
+    if (!COMMENT_URL.some((url) => response.url.includes(url))) {
+      return response;
+    }
 
-    const json = await response.json();
+    const responseClone = response.clone();
+
+    const json = await responseClone.json();
+
+    const mutations: Array<any> =
+      json?.frameworkUpdates?.entityBatchUpdate?.mutations;
+
+    if (!mutations?.some((m) => m?.payload?.commentEntityPayload)) {
+      return response;
+    }
 
     await updateAuthors(json.frameworkUpdates.entityBatchUpdate.mutations);
 
-    const updatedJsonString = JSON.stringify(json);
-
-    const updatedResponse = new Response(updatedJsonString, {
+    const updatedResponse = new Response(JSON.stringify(json), {
+      headers: response.headers,
       status: response.status,
       statusText: response.statusText,
-      headers: response.headers,
     });
-
-    // const fetchTime = performance.now() - startTime;
-    // console.log(`[${APP_ID}]: Fetch time: ${fetchTime} ms`);
 
     return updatedResponse;
   };
 };
 
-const updateAuthors = async (mutations: any[]) => {
+const updateAuthors = async (mutations: any[]): Promise<any> => {
   try {
     const promises = mutations.map(async (m: any) => {
-      if (m.payload.commentEntityPayload) {
-        const channelId = m.payload.commentEntityPayload.author.channelId;
+      const channelId = m.payload.commentEntityPayload.author.channelId;
+      const cName = await getChannelName(channelId);
 
-        if (channelId) {
-          const cName = await getChannelName(channelId);
+      if (cName !== null) {
+        const dName = m.payload.commentEntityPayload.author.displayName;
+        const pTime = m.payload.commentEntityPayload.properties.publishedTime;
 
-          if (cName !== null) {
-            const dName = m.payload.commentEntityPayload.author.displayName;
-            const pTime =
-              m.payload.commentEntityPayload.properties.publishedTime;
-
-            m.payload.commentEntityPayload.properties.publishedTime = `${dName}．${pTime}`;
-            m.payload.commentEntityPayload.author.displayName = cName;
-          }
-        }
+        m.payload.commentEntityPayload.properties.publishedTime = `\u00A0${dName}．${pTime}`;
+        m.payload.commentEntityPayload.author.displayName = cName;
       }
+      return m;
     });
-
-    await Promise.allSettled(promises);
+    return await Promise.allSettled(promises);
   } catch (error) {
     console.error(`[${APP_ID}]: Error updating authors:`, error);
+    return Promise.reject(error);
   }
 };
 
