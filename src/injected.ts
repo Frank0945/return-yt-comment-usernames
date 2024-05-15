@@ -11,14 +11,15 @@ const hideHandle =
 const interceptFetch = () => {
   const { fetch: origFetch } = window;
 
-  window.fetch = async (...args) => {
-    const response = await origFetch(...args);
+  window.fetch = async (input, init) => {
+    const requestURL = input instanceof Request ? input.url : null;
+    const response = await origFetch(input, init);
 
-    if (!response.ok) {
+    if (!requestURL || !response.ok) {
       return response;
     }
 
-    if (!COMMENT_URL.some((url) => response.url.includes(url))) {
+    if (!COMMENT_URL.some((url) => requestURL.includes(url))) {
       return response;
     }
 
