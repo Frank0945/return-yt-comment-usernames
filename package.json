@@ -1,6 +1,6 @@
 {
   "name": "return-yt-comment-usernames",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "return-yt-comment-usernames",
   "main": "index.js",
   "scripts": {
@@ -12,11 +12,10 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@types/chrome": "0.0.158",
+    "@types/dompurify": "^3.0.5",
     "@types/jest": "^29.5.0",
-    "@types/opencc-js": "^1.0.3",
     "copy-webpack-plugin": "^9.0.1",
     "glob": "^7.1.6",
     "jest": "^29.5.0",

@@ -17,7 +17,6 @@ const hideHandleCheckbox = document.getElementById("hideHandle");
 let initHideHandle = false;
 
 chrome.storage.sync.get((data) => {
-  console.log(data);
   if (data?.settings?.hideHandle !== undefined) {
     initHideHandle = data.settings.hideHandle;
     hideHandleCheckbox.checked = data.settings.hideHandle;

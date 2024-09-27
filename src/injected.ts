@@ -8,6 +8,10 @@ const FEED_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=";
 const hideHandle =
   window.localStorage.getItem("hideHandle") === "true" ? true : false;
 
+const trustedPolicy = window.trustedTypes?.createPolicy("default", {
+  createHTML: (input) => input,
+});
+
 const interceptFetch = () => {
   const { fetch: origFetch } = window;
 
@@ -81,10 +85,14 @@ const getChannelName = async (channelId: string): Promise<string | null> => {
       throw new Error("Network response was not ok");
     }
 
-    const xml = await response.text();
+    let xml = await response.text();
+
+    if (trustedPolicy) {
+      xml = trustedPolicy.createHTML(xml).toString();
+    }
 
     const parser = new DOMParser();
-    const doc = parser.parseFromString(xml, "text/xml");
+    const doc = parser.parseFromString(xml, "application/xml");
 
     const titleElement = doc.querySelector("title");
     const title = titleElement ? titleElement.textContent : null;
