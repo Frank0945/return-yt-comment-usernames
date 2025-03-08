@@ -1,6 +1,6 @@
 {
   "name": "return-yt-comment-usernames",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "return-yt-comment-usernames",
   "main": "index.js",
   "scripts": {
