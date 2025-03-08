@@ -1,6 +1,6 @@
 {
   "name": "return-yt-comment-usernames",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "return-yt-comment-usernames",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "npx jest",
     "style": "prettier --write \"src/**/*.{ts,tsx}\""
   },
-  "author": "",
+  "author": "Trien",
   "license": "MIT",
   "devDependencies": {
     "@types/chrome": "0.0.158",
