@@ -61,7 +61,7 @@ const updateAuthors = async (mutations: any[]): Promise<any> => {
         const pTime = m.payload.commentEntityPayload.properties.publishedTime;
 
         if (!hideHandle) {
-          m.payload.commentEntityPayload.properties.publishedTime = `${dName} · ${pTime}`;
+          m.payload.commentEntityPayload.properties.publishedTime = `${dName} • ${pTime}`;
         }
         m.payload.commentEntityPayload.author.displayName = cName;
       }
